@@ -1,5 +1,6 @@
 % How to Make MATLAB Report
 % https://jp.mathworks.com/help/rptgen/ug/create-a-presentation-programmatically.html
+
 Param="VehicleParamsFEM20.m";
 run(Param);
 import mlreportgen.ppt.*;
@@ -19,7 +20,7 @@ mu_deff=mu_deff0;
 SlipEnergy0=3;
 SlipEnergytest=[1, 2, 4, 5, 6, 9, 12];
 SlipEnergy=SlipEnergy0;
-AllSlide=1+length(VeloDelayTest)+length(mu_deffTest)+length(SlipEnergytest);
+AllSlide=1+4+length(VeloDelayTest)+length(mu_deffTest)+length(SlipEnergytest);
 %% タイトルスライド
 Title="Robustness Check of Traction Controll"; %タイトル
 SubTille="Tsuyoshi SOGA" + newline + "2023/07/28"; %サブタイトル
@@ -31,6 +32,40 @@ replace(slide,"Title",Title);
 replace(slide,"Subtitle",SubTille);
 slideNo=1;
 slides=repmat(slide,AllSlide);
+
+%% 制御モデルスクショ
+VCMmain="VCM_main_ver3_0_0.slx";
+TC="TractionControl.slx";
+open(VCMmain)
+open(TC)
+
+Name=string.empty(4,0);
+ModelPath=string.empty(4,0);
+
+Name(1)="AllTractionControl";
+ModelPath(1)="-sVCM_main_ver3_0_0/VDC/Traction Control";
+Name(2)="TargetSpeed_inAcc";
+ModelPath(2)="-sVCM_main_ver3_0_0/VDC/Traction Control/TargetSpeed_inAcc";
+Name(3)="FeedForward";
+ModelPath(3)="-sVCM_main_ver3_0_0/VDC/Traction Control/FF";
+Name(4)="TractionControl";
+ModelPath(4)="-sTractionControl";
+
+for i=1:length(Name)
+    PathPic="Pictures\Model"+Name(i)+".png";
+    print(ModelPath(i), "-dpng", PathPic)
+    Snap(i)=Picture(PathPic);
+    
+    slide = add(ppt,"Title and 1Content");
+    replace(slide,"Title",Name(i));
+    replace(slide,"Content1", Snap(i));
+    slideNo=slideNo+1;
+    slide(slideNo)=slide;
+end
+
+close_system(VCMmain)
+close_system(TC)
+
 
 %% VeloDelayTest
 sim(Model)
@@ -116,7 +151,9 @@ SlipEnergy=SlipEnergy0;%#ok<NASGU>
 VeloDelay=VeloDelay0;
 mu_deff=mu_deff0;
 SlipEnergy=SlipEnergy0;
+close(ppt);
 
+pptview(Title + ".pptx");
 pptview(Title + ".pptx",'converttopdf');
 
 warning
