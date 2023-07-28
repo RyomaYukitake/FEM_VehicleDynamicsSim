@@ -1,96 +1,132 @@
 % How to Make MATLAB Report
 % https://jp.mathworks.com/help/rptgen/ug/create-a-presentation-programmatically.html
-
+Param="VehicleParamsFEM20.m";
+run(Param);
 import mlreportgen.ppt.*;
 
 Model="AccSim_base.slx";
-Param="VehicleParamsFEM20.m";
 
+warning('off','all')
+
+
+%% Default & Test Param
+VeloDelay0=80;
+VeloDelay=VeloDelay0;
+VeloDelayTest=[0, 20, 40, 60, 100, 120, 160, 240, 320];
+mu_deff0=1;
+mu_deffTest=[0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95];
+mu_deff=mu_deff0;
+SlipEnergy0=3;
+SlipEnergytest=[1, 2, 4, 5, 6, 9, 12];
+SlipEnergy=SlipEnergy0;
+AllSlide=1+length(VeloDelayTest)+length(mu_deffTest)+length(SlipEnergytest);
 %% タイトルスライド
 Title="Robustness Check of Traction Controll"; %タイトル
 SubTille="Tsuyoshi SOGA" + newline + "2023/07/28"; %サブタイトル
 
 ppt = Presentation(Title + ".pptx","MATLAB_Report.potx");
 open(ppt);
-slide1 = add(ppt,"Title Slide");
-replace(slide1,"Title",Title);
-replace(slide1,"Subtitle",SubTille);
+slide = add(ppt,"Title Slide");
+replace(slide,"Title",Title);
+replace(slide,"Subtitle",SubTille);
+slideNo=1;
+slides=repmat(slide,AllSlide);
 
-%% スライド2
-VeloDelay=80;
+%% VeloDelayTest
+
+
 sim(Model)
-PathPlot1='Pictures\Fig1.png';
-PlotScope(PathPlot1,"VeloDelay="+VeloDelay,Torque,SlipRate,LongG);
-Plot1=Picture(PathPlot1);
+PathPlot="Pictures\VeloDelay"+VeloDelay+".png";
+PlotScope(PathPlot,"VeloDelay="+VeloDelay,Torque,SlipRate,LongG);
+Plot0=Picture(PathPlot);
 
-VeloDelay=20;
+Plots1=repmat(Plot0, length(VeloDelayTest), 2);
+
+for i=1:length(VeloDelayTest)
+    VeloDelay=VeloDelayTest(i);
+    sim(Model)
+    PathPlot="Pictures\VeloDelay"+VeloDelay+".png";
+    PlotScope(PathPlot,"VeloDelay="+VeloDelay,Torque,SlipRate,LongG);
+    AddPlot=Picture(PathPlot);
+    
+    Plots1(i,2)=AddPlot;
+    
+    slide = add(ppt,"Title and 2Content");
+    replace(slide,"Title","VeloDelay="+VeloDelay);
+    replace(slide,"Content1",Plots1(i,1));
+    replace(slide,"Content2",Plots1(i,2));
+    slideNo=slideNo+1;
+    slide(slideNo)=slide;
+end
+VeloDelay=VeloDelay0;%#ok<NASGU> 
+
+
+%% mu diff test
 sim(Model)
-PathPlot2='Pictures\Fig2.png';
-PlotScope(PathPlot2,"VeloDelay="+VeloDelay,Torque,SlipRate,LongG);
-Plot2=Picture(PathPlot2);
+PathPlot="Pictures\mu"+mu_deff*mu_tire_F+".png";
+PlotScope(PathPlot,"mu="+mu_deff* mu_tire_F,Torque,SlipRate,LongG);
+Plot0=Picture(PathPlot);
 
-slide2 = add(ppt,"Title and 2Content");
-replace(slide2,"Title","VeloDelay");
-replace(slide2,"Content1",Plot1);
-replace(slide2,"Content2",Plot2);
+Plots2=repmat(Plot0, length(mu_deffTest), 2);
 
-%% スライド3
-VeloDelay=40;
+for i=1:length(mu_deffTest)
+    mu_deff=mu_deffTest(i);
+    sim(Model)
+    PathPlot="Pictures\mu"+mu_deff*mu_tire_F+".png";
+    PlotScope(PathPlot,"mu="+mu_deff* mu_tire_F,Torque,SlipRate,LongG);
+    AddPlot=Picture(PathPlot);
+    
+    Plots2(i,2)=AddPlot;
+    
+    slide = add(ppt,"Title and 2Content");
+    replace(slide,"Title","mu difference x"+mu_deff);
+    replace(slide,"Content1",Plots2(i,1));
+    replace(slide,"Content2",Plots2(i,2));
+    slideNo=slideNo+1;
+    slide(slideNo)=slide;
+end
+mu_deff=mu_deff0; %#ok<NASGU> 
+
+%% Slip Energy Test
 sim(Model)
-PathPlot2='Pictures\Fig2.png';
-PlotScope(PathPlot2,"VeloDelay="+VeloDelay,Torque,SlipRate,LongG);
-Plot2=Picture(PathPlot2);
+PathPlot="Pictures\SlipEnergy"+SlipEnergy+".png";
+PlotScope(PathPlot,"SlipEnergy="+SlipEnergy,Torque,SlipRate,LongG);
+Plot0=Picture(PathPlot);
 
-slide3 = add(ppt,"Title and 2Content");
-replace(slide3,"Title","VeloDelay");
-replace(slide3,"Content1",Plot1);
-replace(slide3,"Content2",Plot2);
+Plots3=repmat(Plot0, length(SlipEnergytest), 2);
 
-%% スライド4
-VeloDelay=160;
-sim(Model)
-PathPlot2='Pictures\Fig2.png';
-PlotScope(PathPlot2,"VeloDelay="+VeloDelay,Torque,SlipRate,LongG);
-Plot2=Picture(PathPlot2);
+for i=1:length(SlipEnergytest)
+    SlipEnergy=SlipEnergytest(i);
+    sim(Model)
+    PathPlot="Pictures\SlipEnergy"+SlipEnergy+".png";
+    PlotScope(PathPlot,"SlipEnergy="+SlipEnergy,Torque,SlipRate,LongG);
+    AddPlot=Picture(PathPlot);
+    
+    Plots3(i,2)=AddPlot;
+    
+    slide = add(ppt,"Title and 2Content");
+    replace(slide,"Title","SlipEnergy difference");
+    replace(slide,"Content1",Plots3(i,1));
+    replace(slide,"Content2",Plots3(i,2));
+    slideNo=slideNo+1;
+    slide(slideNo)=slide;
+end
+SlipEnergy=SlipEnergy0;%#ok<NASGU> 
 
-slide4 = add(ppt,"Title and 2Content");
-replace(slide4,"Title","VeloDelay");
-replace(slide4,"Content1",Plot1);
-replace(slide4,"Content2",Plot2);
 
-%% スライド5
-VeloDelay=320;
-sim(Model)
-PathPlot2='Pictures\Fig2.png';
-PlotScope(PathPlot2,"VeloDelay="+VeloDelay,Torque,SlipRate,LongG);
-Plot2=Picture(PathPlot2);
-
-slide5 = add(ppt,"Title and 2Content");
-replace(slide5,"Title","VeloDelay");
-replace(slide5,"Content1",Plot1);
-replace(slide5,"Content2",Plot2);
-
-%% スライド6
-VeloDelay=80;
-sim(Model)
-PathPlot1='Pictures\Fig1.png';
-PlotScope(PathPlot1,"VeloDelay="+VeloDelay,Torque,SlipRate,LongG);
-Plot1=Picture(PathPlot1);
-
-VeloDelay=20;
-sim(Model)
-PathPlot2='Pictures\Fig2.png';
-PlotScope(PathPlot2,"VeloDelay="+VeloDelay,Torque,SlipRate,LongG);
-Plot2=Picture(PathPlot2);
-
-slide2 = add(ppt,"Title and 2Content");
-replace(slide2,"Title","VeloDelay");
-replace(slide2,"Content1",Plot1);
-replace(slide2,"Content2",Plot2);
 %% 終了
+VeloDelay=VeloDelay0;
+mu_deff=mu_deff0;
+SlipEnergy=SlipEnergy0;
+
+warning
+
 close(ppt);
 
-%% 関数
+
+
+
+%% plot作成関数
 function PlotScope(Path,GraphTitle,Torque,SlipRate,LongG)
     f=figure;
     f.Position(3:4) = [560 700]; %[width heigt]
@@ -106,9 +142,9 @@ function PlotScope(Path,GraphTitle,Torque,SlipRate,LongG)
     saveas(f,Path);
     close(f)
 end
-
 function PlotScope2(Name, Data)
     hold on
+    grid on
     plot(Data{1}.Values)
     plot(Data{2}.Values)
     set(gca,'FontSize',16);
@@ -118,6 +154,7 @@ function PlotScope2(Name, Data)
 end
 function PlotScope1(Name, Data)
     hold on
+    grid on
     plot(Data{1}.Values)
     set(gca,'FontSize',16);
     ylabel(Name)
