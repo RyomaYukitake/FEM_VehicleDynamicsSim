@@ -28,5 +28,5 @@ FEMSimで、右クリック>ソースの管理>ファイルの管理
 プロジェクトを開く
 マトラボ開いて左に出てくる現在のフォルダーで"FEM_VehicleDynamicsSim.prj"を開いてね。
 
-参考URL
-https://www.youtube.com/watch?v=LQOwXnOVh-A&t=3s
+使い方URL
+https://www.youtube.com/watch?v=9S3QbpNNZf4
