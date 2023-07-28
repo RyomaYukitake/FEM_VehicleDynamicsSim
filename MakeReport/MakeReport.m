@@ -33,8 +33,6 @@ slideNo=1;
 slides=repmat(slide,AllSlide);
 
 %% VeloDelayTest
-
-
 sim(Model)
 PathPlot="Pictures\VeloDelay"+VeloDelay+".png";
 PlotScope(PathPlot,"VeloDelay="+VeloDelay,Torque,SlipRate,LongG);
@@ -119,11 +117,9 @@ VeloDelay=VeloDelay0;
 mu_deff=mu_deff0;
 SlipEnergy=SlipEnergy0;
 
+pptview(Title + ".pptx",'converttopdf');
+
 warning
-
-close(ppt);
-
-
 
 
 %% plot作成関数
