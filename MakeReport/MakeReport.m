@@ -156,7 +156,7 @@ close(ppt);
 pptview(Title + ".pptx");
 pptview(Title + ".pptx",'converttopdf');
 
-warning
+warning('on','all')
 
 
 %% plot作成関数

@@ -1,8 +1,6 @@
-disp("現在のワークスペースにはFEM20のパラメータが入っています。")
-disp("ギア比が異なる場合は注意してください。")
+disp("現在のワークスペースにはFEM20のパラメータが入っていますが、ギア比だけはFEM17の値です。")
 
 clear
-
 load('efficientmap2.mat');
 % Kpower=0;%power limiter parameter
 g = 9.80665; %gravity[m/s^2]
