@@ -1,0 +1,1 @@
+-- call "C:\ProgramData\dSPACE\AD52223F-E7EC-4A16-97FB-8ADC3C426EE0\Compiler\PPCTools\BIN\lnkppc.exe"  -K0 -QmsA0314 -QmsA0407 -QmeA0307 -QmeA0329 -m..\VCM20.map -o ..\VCM20.ppc -c _tmp_VCM20.lk 

@@ -1,0 +1,28 @@
+
+
+
+-- Type definitions for arrays
+typedef VCM20_ArrayDT0_2 flt(64,IEEE)[2]
+typedef VCM20_ArrayDT0_5 flt(64,IEEE)[5]
+typedef VCM20_ArrayDT3_1_8_Col col uint(8)[1][8]
+typedef VCM20_ArrayDT0_7 flt(64,IEEE)[7]
+typedef VCM20_ArrayDT0_9 flt(64,IEEE)[9]
+typedef VCM20_ArrayDT0_11_10_Col col flt(64,IEEE)[11][10]
+typedef VCM20_ArrayDT0_11 flt(64,IEEE)[11]
+typedef VCM20_ArrayDT0_10 flt(64,IEEE)[10]
+typedef VCM20_ArrayDT7_2 uint(32)[2]
+typedef VCM20_ArrayDT0_3 flt(64,IEEE)[3]
+typedef VCM20_ArrayDT0_4 flt(64,IEEE)[4]
+typedef VCM20_ArrayDT0_6 flt(64,IEEE)[6]
+typedef VCM20_ArrayDT0_8 flt(64,IEEE)[8]
+typedef VCM20_ArrayDT10_2 int(32)[2]
+typedef VCM20_ArrayDT8_2 uint(8)[2]
+typedef VCM20_ArrayDT8_3 uint(8)[3]
+typedef VCM20_ArrayDT8_4 uint(8)[4]
+typedef VCM20_ArrayDT8_5 uint(8)[5]
+typedef VCM20_ArrayDT8_6 uint(8)[6]
+typedef VCM20_ArrayDT8_7 uint(8)[7]
+typedef VCM20_ArrayDT8_8 uint(8)[8]
+typedef VCM20_ArrayDT8_9 uint(8)[9]
+
+
