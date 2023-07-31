@@ -1,3 +1,4 @@
+disp("")
 disp("現在のワークスペースにはFEM20のパラメータが入っていますが、ギア比だけはFEM17の値です。")
 
 clear
@@ -79,8 +80,8 @@ DF_f = CLF * v * v;%Downforce Front[N]
 DF_r = CLR * v * v;%Rear[N]
 
 %% gear
-gear_f=13.75;%gear ratio
-gear_r=13.75;%gear ratio
+gear_f=14.45;%gear ratio
+gear_r=14.45;%gear ratio
 
 %% Brake
 Pedal_Ratio=3;
