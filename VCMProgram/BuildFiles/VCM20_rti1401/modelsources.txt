@@ -1,3 +1,0 @@
-    VCM20.c
-VCM20_trc_ptr.c
-
