@@ -5,6 +5,10 @@ disp("ƒMƒA”ä‚ªˆÙ‚È‚éê‡‚Í’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢B")
 clear
 
 load('efficientmap2.mat');
+load('Load.mat');
+load('SlipAngle.mat');
+load('BestSlipRate.mat');
+
 % Kpower=0;%power limiter parameter
 g = 9.80665; %gravity[m/s^2]
 

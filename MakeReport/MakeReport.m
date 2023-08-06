@@ -22,8 +22,8 @@ SlipEnergytest=[1, 2, 4, 5, 6, 9, 12];
 SlipEnergy=SlipEnergy0;
 AllSlide=1+4+length(VeloDelayTest)+length(mu_deffTest)+length(SlipEnergytest);
 %% タイトルスライド
-Title="Robustness Check of Traction Controll"; %タイトル
-SubTille="Tsuyoshi SOGA" + newline + "2023/07/28"; %サブタイトル
+Title="Robustness Check of Traction Controll 230807"; %タイトル
+SubTille="Tsuyoshi SOGA" + newline + "2023/08/07"; %サブタイトル
 
 ppt = Presentation(Title + ".pptx","MATLAB_Report.potx");
 open(ppt);
@@ -42,14 +42,23 @@ open(TC)
 Name=string.empty(4,0);
 ModelPath=string.empty(4,0);
 
-Name(1)="AllTractionControl";
-ModelPath(1)="-sVCM_main_ver3_0_0/VDC/Traction Control";
-Name(2)="TargetSpeed_inAcc";
-ModelPath(2)="-sVCM_main_ver3_0_0/VDC/Traction Control/TargetSpeed_inAcc";
-Name(3)="FeedForward";
-ModelPath(3)="-sVCM_main_ver3_0_0/VDC/Traction Control/FF";
-Name(4)="TractionControl";
-ModelPath(4)="-sTractionControl";
+Name(1)="OverallTractionControl";
+ModelPath(1)="-sVCM_main/VDC/Traction Control";
+Name(2)="Target";
+ModelPath(2)="-sVCM_main/VDC/Traction Control/Target";
+Name(3)="Vehicle Speed";
+ModelPath(3)="-sVCM_main/VDC/Traction Control/Target/Vehicle Speed";
+Name(4)="Acc Estimater";
+ModelPath(4)="-sVCM_main/VDC/Traction Control/Target/Acc Estimater";
+Name(5)="Load Estimater";
+ModelPath(5)="-sVCM_main/VDC/Traction Control/Target/Load Estimater";
+Name(6)="Slip Angle Estimater";
+ModelPath(6)="-sVCM_main/VDC/Traction Control/Target/Slip Angle Estimater";
+Name(7)="TC_Target";
+ModelPath(7)="-sTC_Target";
+Name(8)="TractionControl";
+ModelPath(8)="-sTractionControl";
+
 
 for i=1:length(Name)
     PathPic="Pictures\Model"+Name(i)+".png";
