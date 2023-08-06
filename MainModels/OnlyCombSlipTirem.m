@@ -7,6 +7,7 @@ Fy=Fx;
 MaxFx=zeros(length(Load),length(SlipAngle));
 MaxFy=MaxFx;
 idx=MaxFx;
+BestSlipRate=MaxFx;
 
 hold on
 for k=1:length(Load)
@@ -21,6 +22,7 @@ for k=1:length(Load)
 %         plot(SlipRate,Fx)
         [MaxFx(k,j), idx(k,j)] = max(Fx);
         MaxFy(k,j) = Fy(idx(k,j));
+        BestSlipRate(k,j)=SlipRate(idx(k,j));
     end
 
     figure(1)%スリップ角ごとの最適スリップ率
@@ -48,6 +50,9 @@ xlabel("Load")
 ylabel("SlipRate FxMax")
 
 hold off
+
+
+
 
 %% Functions
 function PureFx = FcnPureFx(Load, SlipRate, afx_f)
