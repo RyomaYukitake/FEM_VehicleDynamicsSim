@@ -3,6 +3,9 @@ disp("現在のワークスペースにはFEM20のパラメータが入っていますが、ギア比だけはFEM
 
 clear
 load('efficientmap2.mat');
+load('Load.mat');
+load('SlipAngle.mat');
+load('BestSlipRate.mat');
 % Kpower=0;%power limiter parameter
 g = 9.80665; %gravity[m/s^2]
 
