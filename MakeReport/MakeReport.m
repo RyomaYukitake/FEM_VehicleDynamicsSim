@@ -22,8 +22,8 @@ SlipEnergytest=[1, 2, 4, 5, 6, 9, 12];
 SlipEnergy=SlipEnergy0;
 AllSlide=1+4+length(VeloDelayTest)+length(mu_deffTest)+length(SlipEnergytest);
 %% タイトルスライド
-Title="Robustness Check of Traction Controll 230807"; %タイトル
-SubTille="Tsuyoshi SOGA" + newline + "2023/08/07"; %サブタイトル
+Title="230808_Rain Robustness Check of Traction Controll"; %タイトル
+SubTille="Tsuyoshi SOGA" + newline + "2023/08/08"; %サブタイトル
 
 ppt = Presentation(Title + ".pptx","MATLAB_Report.potx");
 open(ppt);
@@ -34,7 +34,7 @@ slideNo=1;
 slides=repmat(slide,AllSlide);
 
 %% 制御モデルスクショ
-VCMmain="VCM_main_ver3_0_0.slx";
+VCMmain="VCM_main.slx";
 TC="TractionControl.slx";
 open(VCMmain)
 open(TC)
