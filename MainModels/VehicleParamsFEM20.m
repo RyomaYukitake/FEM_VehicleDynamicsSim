@@ -5,8 +5,6 @@ disp("ƒMƒA”ä‚ªˆÙ‚È‚éê‡‚Í’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢B")
 clear
 
 load('efficientmap2.mat');
-load('Load.mat');
-load('SlipAngle.mat');
 load('BestSlipRate.mat');
 
 % Kpower=0;%power limiter parameter
@@ -48,6 +46,7 @@ Reartoe = -2;%Rear initial toe(deg) Positive=Toe out
 krfr=0.5;%Front Roll Stiff Dist.
 rcf=0.000;%Front Roll Center Height(m)
 rcr=0.000;%Rear Roll Center Height(m)
+rch=rcf*WBf+rcr*(1-WBf);%Roll center height at center of gravity
 
 castrail_Fr = 0.00;%castrail(mm)
 castrail_Rr = 0.00;%castrail(mm)
@@ -146,7 +145,6 @@ lr = l*WBf;%(m)
 W0_F = M*WBf/2;%Front initial load
 W0_R = M*(1-WBf)/2;%Rear initial load
 
-rch=rcf*WBf+rcr*(1-WBf);%Roll center height at center of gravity
 
 %d =delta*pi/180;%(radians)
 
