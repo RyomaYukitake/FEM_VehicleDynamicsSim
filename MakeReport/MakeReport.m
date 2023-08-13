@@ -22,8 +22,8 @@ SlipEnergytest=[1, 2, 4, 5, 6, 9, 12];
 SlipEnergy=SlipEnergy0;
 AllSlide=1+4+length(VeloDelayTest)+length(mu_deffTest)+length(SlipEnergytest);
 %% タイトルスライド
-Title="230808_Rain Robustness Check of Traction Controll"; %タイトル
-SubTille="Tsuyoshi SOGA" + newline + "2023/08/08"; %サブタイトル
+Title="230812_Rain Robustness Check of Traction Controll"; %タイトル
+SubTille="Tsuyoshi SOGA" + newline + "2023/08/12"; %サブタイトル
 
 ppt = Presentation(Title + ".pptx","MATLAB_Report.potx");
 open(ppt);
