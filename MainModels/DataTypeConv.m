@@ -1,5 +1,5 @@
 freq=100;
-start=192*freq+1;
+start=191*freq+1;
 fin=200*freq;
 
 time=1/freq*(0:fin-start);

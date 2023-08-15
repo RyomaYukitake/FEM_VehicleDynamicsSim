@@ -11,19 +11,19 @@ warning('off','all')
 
 
 %% Default & Test Param
-VeloDelay0=80;
+VeloDelay0=10;
 VeloDelay=VeloDelay0;
-VeloDelayTest=[0, 20, 40, 60, 100, 120, 160, 240, 320];
+VeloDelayTest=[0, 5, 20, 40, 60, 100];
 mu_deff0=1;
 mu_deffTest=[0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95];
 mu_deff=mu_deff0;
 SlipEnergy0=3;
-SlipEnergytest=[1, 2, 4, 5, 6, 9, 12];
+SlipEnergytest=[0.1, 1, 2, 4, 5, 6, 9, 12];
 SlipEnergy=SlipEnergy0;
 AllSlide=1+4+length(VeloDelayTest)+length(mu_deffTest)+length(SlipEnergytest);
 %% タイトルスライド
-Title="230812_Rain Robustness Check of Traction Controll"; %タイトル
-SubTille="Tsuyoshi SOGA" + newline + "2023/08/12"; %サブタイトル
+Title="230815 mu_change Robustness Check of Traction Controll"; %タイトル
+SubTille="Tsuyoshi SOGA" + newline + "2023/08/15"; %サブタイトル
 
 ppt = Presentation(Title + ".pptx","MATLAB_Report.potx");
 open(ppt);
@@ -35,7 +35,7 @@ slides=repmat(slide,AllSlide);
 
 %% 制御モデルスクショ
 VCMmain="VCM_main.slx";
-TC="TractionControl.slx";
+TC="TC_Target.slx";
 open(VCMmain)
 open(TC)
 
@@ -45,19 +45,17 @@ ModelPath=string.empty(4,0);
 Name(1)="OverallTractionControl";
 ModelPath(1)="-sVCM_main/VDC/Traction Control";
 Name(2)="Target";
-ModelPath(2)="-sVCM_main/VDC/Traction Control/Target";
+ModelPath(2)="-sVCM_main/VDC/Traction Control";
 Name(3)="Vehicle Speed";
-ModelPath(3)="-sVCM_main/VDC/Traction Control/Target/Vehicle Speed";
+ModelPath(3)="-sVCM_main/VDC/Traction Control/Vehicle Speed";
 Name(4)="Acc Estimater";
-ModelPath(4)="-sVCM_main/VDC/Traction Control/Target/Acc Estimater";
+ModelPath(4)="-sVCM_main/VDC/Traction Control/Acc Estimater";
 Name(5)="Load Estimater";
-ModelPath(5)="-sVCM_main/VDC/Traction Control/Target/Load Estimater";
-Name(6)="Slip Angle Estimater";
-ModelPath(6)="-sVCM_main/VDC/Traction Control/Target/Slip Angle Estimater";
-Name(7)="TC_Target";
+ModelPath(5)="-sVCM_main/VDC/Traction Control/Load Estimater";
+Name(6)="Fx Estimater";
+ModelPath(6)="-sVCM_main/VDC/Traction Control/Fx Estimater";
+Name(7)="TC main";
 ModelPath(7)="-sTC_Target";
-Name(8)="TractionControl";
-ModelPath(8)="-sTractionControl";
 
 
 for i=1:length(Name)
