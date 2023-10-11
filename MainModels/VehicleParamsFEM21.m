@@ -1,5 +1,5 @@
 disp("")
-disp("現在のワークスペースにはFEM20のパラメータが入っています。")
+disp("現在のワークスペースにはFEM21のパラメータが入っています。")
 disp("ギア比が異なる場合は注意してください。")
 
 clear
@@ -44,8 +44,8 @@ Frtoe = 0;%Front initial toe(deg) Positive=Toe out
 Reartoe = -2;%Rear initial toe(deg) Positive=Toe out
 
 krfr=0.5;%Front Roll Stiff Dist.
-rcf=0.000;%Front Roll Center Height(m)
-rcr=0.000;%Rear Roll Center Height(m)
+rcf=15;%Front Roll Center Height(m)
+rcr=30;%Rear Roll Center Height(m)
 rch=rcf*WBf+rcr*(1-WBf);%Roll center height at center of gravity
 
 castrail_Fr = 0.00;%castrail(mm)
